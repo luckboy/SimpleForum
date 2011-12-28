@@ -1,4 +1,10 @@
 SimpleForum::Application.routes.draw do
+  resources :posts
+
+  resources :topics
+
+  resources :forums
+
   resources :users
 
   resource :user_session

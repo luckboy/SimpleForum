@@ -11,7 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228194248) do
+ActiveRecord::Schema.define(:version => 20111228230547) do
+
+  create_table "forums", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.text     "body"
+    t.integer  "author_id"
+    t.integer  "topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["author_id"], :name => "index_posts_on_author_id"
+  add_index "posts", ["topic_id"], :name => "index_posts_on_topic_id"
+
+  create_table "topics", :force => true do |t|
+    t.string   "subject"
+    t.integer  "author_id"
+    t.integer  "forum_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topics", ["author_id"], :name => "index_topics_on_author_id"
+  add_index "topics", ["forum_id"], :name => "index_topics_on_forum_id"
 
   create_table "users", :force => true do |t|
     t.string   "login",                              :null => false
