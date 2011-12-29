@@ -15,13 +15,13 @@
     <td><%= topic.subject %></td>
     <td><%= topic.author %></td>
     <td><%= topic.forum %></td>
-    <td><%= link_to 'Show', topic %></td>
-    <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-    <td><%= link_to 'Destroy', topic, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', [@forum, topic] %></td>
+    <td><%= link_to 'Edit', edit_forum_topic_path(@forum, topic) %></td>
+    <td><%= link_to 'Destroy', [@forum, topic], confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Topic', new_topic_path %>
+<%= link_to 'New Topic', new_forum_topic_path(@forum) %>

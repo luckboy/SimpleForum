@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
-  # GET /posts
-  # GET /posts.json
+  # GET /forums/1/topics/1/posts
+  # GET /forums/1/topics/1/posts.json
   def index
-    @posts = Post.all
+    @forum = Forum.find(params[:forum_id])
+    @topic = @forum.topics.find(params[:topic_id])
+    @posts = @topic.posts
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,10 +12,12 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/1
-  # GET /posts/1.json
+  # GET /forums/1/topics/1/posts/1
+  # GET /forums/1/topics/1/posts/1.json
   def show
-    @post = Post.find(params[:id])
+    @forum = Forum.find(params[:forum_id])
+    @topic = @forum.topics.find(params[:topic_id])
+    @post = @topic.posts.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,10 +25,12 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/new
-  # GET /posts/new.json
+  # GET /forums/1/topics/1/posts/new
+  # GET /forums/1/topics/1/posts/new.json
   def new
-    @post = Post.new
+    @forum = Forum.find(params[:forum_id])
+    @topic = @forum.topics.find(params[:topic_id])
+    @post = @topic.posts.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -32,19 +38,23 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/1/edit
+  # GET /forums/1/topics/1/posts/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @forum = Forum.find(params[:forum_id])
+    @topic = @forum.topics.find(params[:topic_id])
+    @post = @topic.posts.find(params[:id])
   end
 
-  # POST /posts
-  # POST /posts.json
+  # POST /forums/1/topics/1/posts
+  # POST /forums/1/topics/1/posts.json
   def create
-    @post = Post.new(params[:post])
+    @forum = Forum.find(params[:forum_id])
+    @topic = @forum.topics.find(params[:topic_id])
+    @post = @topic.posts.new(params[:post].merge(:author => current_user))
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to [@forum, @topic, @post], notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
@@ -53,14 +63,16 @@ class PostsController < ApplicationController
     end
   end
 
-  # PUT /posts/1
-  # PUT /posts/1.json
+  # PUT /forums/1/topics/1/posts/1
+  # PUT /forums/1/topics/1/posts/1.json
   def update
-    @post = Post.find(params[:id])
+    @forum = Forum.find(params[:forum_id])
+    @topic = @forum.topics.find(params[:topic_id])
+    @post = @topic.posts.find(params[:id])
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to [@forum, @topic, @post], notice: 'Post was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -69,14 +81,16 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1
-  # DELETE /posts/1.json
+  # DELETE /forums/1/topics/1/posts/1
+  # DELETE /forums/1/topics/1/posts/1.json
   def destroy
-    @post = Post.find(params[:id])
+    @forum = Forum.find(params[:forum_id])
+    @topic = @forum.topics.find(params[:topic_id])
+    @post = @topic.posts.find(params[:id])
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url }
+      format.html { redirect_to forum_topic_posts_url(@forum, @topic) }
       format.json { head :ok }
     end
   end

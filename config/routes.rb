@@ -1,9 +1,9 @@
 SimpleForum::Application.routes.draw do
-  resources :posts
-
-  resources :topics
-
-  resources :forums
+  resources :forums do
+    resources :topics do
+      resources :posts
+    end
+  end
 
   resources :users
 

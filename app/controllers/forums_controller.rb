@@ -16,7 +16,7 @@ class ForumsController < ApplicationController
     @forum = Forum.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { redirect_to forum_topics_url(@forum) }
       format.json { render json: @forum }
     end
   end
