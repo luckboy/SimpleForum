@@ -1,21 +1,30 @@
-<h1>Listing forums</h1>
+<h1>Index</h1>
 
-<table>
+<table id="forum_table" class="main_table">
   <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th class="forum_col1">Forum</th>
+    <th class="forum_col2">Last post</th>
   </tr>
 
 <% @forums.each do |forum| %>
   <tr>
-    <td><%= forum.name %></td>
-    <td><%= forum.description %></td>
-    <td><%= link_to 'Show', forum %></td>
-    <td><%= link_to 'Edit', edit_forum_path(forum) %></td>
-    <td><%= link_to 'Destroy', forum, confirm: 'Are you sure?', method: :delete %></td>
+    <td class="forum_col1">
+      <div class="forum_name">
+      	<strong><%= link_to forum.name, forum %></strong>
+      </div>
+      <div class="forum_stat">
+      	<small>Topics: <%= forum.topics.count %>, Posts: <%= forum.posts.count %></small>
+      </div>
+      <div class="forum_desc"><p><%= forum.description %></p></div>
+      <div class="ops">
+       [ <%= link_to 'Edit', edit_forum_path(forum) %> |
+         <%= link_to 'Destroy', forum, confirm: 'Are you sure?', method: :delete %> ]
+      </div>      	
+    </td>
+    <td class="forum_col2">
+      <div class="last_post">
+      </div>
+    </td>
   </tr>
 <% end %>
 </table>

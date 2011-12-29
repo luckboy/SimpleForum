@@ -1,23 +1,37 @@
-<h1>Listing topics</h1>
+<h1><%= @forum.name %></h1>
 
-<table>
+<table id="topic_table" class="main_table">
   <tr>
-    <th>Subject</th>
-    <th>Author</th>
-    <th>Forum</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th class="topic_col1">Subject</th>
+    <th class="topic_col2">Posts</th>
+    <th class="topic_col3">Last post</th>
   </tr>
 
 <% @topics.each do |topic| %>
   <tr>
-    <td><%= topic.subject %></td>
-    <td><%= topic.author %></td>
-    <td><%= topic.forum %></td>
-    <td><%= link_to 'Show', [@forum, topic] %></td>
-    <td><%= link_to 'Edit', edit_forum_topic_path(@forum, topic) %></td>
-    <td><%= link_to 'Destroy', [@forum, topic], confirm: 'Are you sure?', method: :delete %></td>
+    <td class="topic_col1">
+      <div class="topic_subject">
+      	<%= link_to topic.subject, [@forum, topic] %> by 
+      	<% unless topic.author.nil? %>
+      	  <%= topic.author.login %>
+      	<% else %>
+      	  guest
+      	<% end %>
+      </div>
+      <div class="ops">
+        [ <%= link_to 'Edit', edit_forum_topic_path(@forum, topic) %> |
+          <%= link_to 'Destroy', [@forum, topic], confirm: 'Are you sure?', method: :delete %> ]
+      </div>
+    </td>
+    <td class="topic_col2">
+      <div class="topic_posts">
+      	<%= topic.posts.count %>
+      </div>
+    </td>
+    <td class="topic_col3">
+      <div class="last_post">
+      </div>
+    </td>
   </tr>
 <% end %>
 </table>

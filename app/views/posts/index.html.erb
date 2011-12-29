@@ -1,23 +1,34 @@
-<h1>Listing posts</h1>
-
-<table>
+<h1><%= @topic.subject %></h1>
+	
+<table id="post_table" class="main_table">
   <tr>
-    <th>Body</th>
-    <th>Author</th>
-    <th>Topic</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th class="post_col1">Author</th>
+    <th class="post_col2">Post</th>
   </tr>
-
+  
 <% @posts.each do |post| %>
   <tr>
-    <td><%= post.body %></td>
-    <td><%= post.author %></td>
-    <td><%= post.topic %></td>
-    <td><%= link_to 'Show', [@forum, @topic, post] %></td>
-    <td><%= link_to 'Edit', edit_forum_topic_post_path(@forum, @topic, post) %></td>
-    <td><%= link_to 'Destroy', [@forum, @topic, post], confirm: 'Are you sure?', method: :delete %></td>
+    <td class="post_col1">
+      <div clas="post_author">
+    	<% unless post.author.nil? %>
+    	  <%= post.author.login %>
+    	<% else %>
+    	  guest
+    	<% end %>
+      </div>
+    </td>
+    <td class="post_col2">
+    	<div class="post_date">
+    	  <small>Created at: <%= post.created_at %>, Updated at: <%= post.updated_at %></small>
+    	</div>
+    	<div class="post_body">
+    	  <p><%= post.body %></p>
+    	</div>
+    	<div class="ops">
+          [ <%= link_to 'Edit', edit_forum_topic_post_path(@forum, @topic, post) %> |
+            <%= link_to 'Destroy', [@forum, @topic, post], confirm: 'Are you sure?', method: :delete %> ]
+    	</div>
+    </td>
   </tr>
 <% end %>
 </table>

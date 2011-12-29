@@ -1,0 +1,139 @@
+body {
+  background-color: #c5dc8d;
+  color: #191919;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 10pt;
+  line-height: 12pt;
+  margin: 0pt;
+}
+
+#header1 {
+  color: #0c2c01;
+  padding: {
+    top: 20pt;
+    left: 30pt;
+    right: 30pt;
+    bottom: 15pt;
+  }
+  h1 {
+    font-size: 18pt;
+    line-height: 22pt;
+    margin: 0pt;
+  }
+}
+
+#header, #footer {    
+  background-color: #e1fbb3;
+  color: #0c2c01;
+  a {
+    color: #1a6101;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  padding: {
+    top: 5pt;
+    left: 15pt;
+    right: 15pt;
+    bottom: 5pt;
+  }
+}
+
+#content {
+  background-color: #ffffff;
+  padding: {
+    top: 5pt;
+    left: 15pt;
+    right: 15pt;
+    bottom: 5pt;
+  }
+}
+
+.main_table {
+  width: 100%;
+  border-collapse: collapse;
+  tr {
+    th {
+      background-color: #e1fbb3;
+      color: #0c2c01;
+      text-align: left;
+      border: {
+        color: #ccffc5;
+        style: solid;
+        width: 1px;
+      }
+      padding: { left: 5pt; right: 5pt; }
+    }
+  }
+  tr {
+    td {
+      border: {
+        color: #ccffc5;
+        style: solid;
+        width: 1px;
+      }
+      padding: 5pt;
+    }
+  }
+}
+
+#forum_table {
+  .forum_col1 { width: 80%; }
+}
+
+#topic_table {
+  .topic_col1 { width: 70%; }
+  .topic_col2 { width: 10%; }
+}
+
+#post_table {
+  .post_col1 { width: 15%; }
+}
+h1 {
+  font-size: 14pt;
+  line-height: 16pt;
+  margin: {
+    top: 0pt;
+    bottom: 10pt;
+  }
+}
+
+h2 {
+  font-size: 12pt;
+  line-height: 14pt;
+  margin: {
+    top: 0pt;
+    bottom: 10pt;
+  }
+}
+
+h3 {
+  font-size: 10pt;
+  line-height: 12pt;
+  margin: {
+    top: 0pt;
+    bottom: 10pt;
+  }
+}
+
+a {
+  color: #000b44;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+p {
+  margin: {
+    top: 5pt;
+    bottom: 5pt;
+  }
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10pt;
+  } 
+}

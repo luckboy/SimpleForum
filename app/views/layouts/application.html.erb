@@ -7,15 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% unless current_user.nil? %>
-  <%= link_to "My Account", account_path %>
-  <%= link_to "Log Out", user_session_path, :method => :delete %>
-<% else %>
-  <%= link_to "Register", new_account_path %>
-  <%= link_to "Log In", new_user_session_path %>
-<% end %>
+<div id="header1">
+  <h1>Simple Forum</h1>
+</div>
+<div id="header">
+  <%= link_to "Index", "/" %> |
+  <% unless current_user.nil? %>
+    <%= link_to "My Account", account_path %> |
+    <%= link_to "Log Out", user_session_path, :method => :delete %>
+  <% else %>
+    <%= link_to "Register", new_account_path %> |
+    <%= link_to "Log In", new_user_session_path %>
+  <% end %>
+</div>
 
-<%= yield %>
+<div id="content">
+  <%= yield %>
+</div>
+
+<div id="footer">
+  Powered by Łukasz Szpakowski
+</div>
 
 </body>
 </html>
