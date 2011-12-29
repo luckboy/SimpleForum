@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228230547) do
+ActiveRecord::Schema.define(:version => 20111229211336) do
 
   create_table "forums", :force => true do |t|
     t.string   "name"
@@ -59,6 +59,9 @@ ActiveRecord::Schema.define(:version => 20111228230547) do
     t.string   "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "real_name"
+    t.string   "website"
+    t.string   "location"
   end
 
 end

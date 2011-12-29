@@ -1,21 +1,31 @@
 <h1>Listing users</h1>
 
-<table>
+<table id="user_table" class="main_table">
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+  	<th class="user_col1">Login</th>
+    <th class="user_col2">Posts</th>
+    <th class="user_col3">Registered at</th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+  	<td class="user_col1">
+  	  <div class="user_login"><%= link_to user.login, user %></div>
+  	  <div class="ops">
+        [ <%= link_to 'Edit', edit_user_path(user) %> |
+          <%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %> ]
+  	  </div>
+  	</td>
+  	<td class="user_col2">
+  	  <div class="user_posts">
+  	  	<%= user.posts.count %>
+  	  </div>
+    </td>
+    <td class="user_col3">
+      <div class="user_registered_at">
+      	<%= user.created_at %>
+      </div>
+    </td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New User', new_user_path %>

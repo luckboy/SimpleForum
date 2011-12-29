@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.order("login ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,8 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    #@user = User.find(params[:id])
-    @user = current_user
+    @user = params[:id].nil? ? current_user : User.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,7 +34,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    #@user = User.find(params[:id])
     @user = current_user
   end
 
