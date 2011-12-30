@@ -1,10 +1,10 @@
-<h1>Listing users</h1>
+<h1>Users</h1>
 
 <table id="user_table" class="main_table">
   <tr>
   	<th class="user_col1">Login</th>
     <th class="user_col2">Posts</th>
-    <th class="user_col3">Registered at</th>
+    <th class="user_col3">Registered</th>
   </tr>
 
 <% @users.each do |user| %>
@@ -26,8 +26,8 @@
   	  </div>
     </td>
     <td class="user_col3">
-      <div class="user_registered_at">
-      	<%= user.created_at %>
+      <div class="user_registered">
+      	<%= user.created_at.to_formatted_s(:short) %>
       </div>
     </td>
   </tr>
@@ -36,4 +36,4 @@
 
 <br />
 
-<%= link_to "Index", "/" %>
+<%= link_to 'Back', "/" %>

@@ -26,13 +26,14 @@ class Ability
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
     unless user.nil?
       if user.admin?
-        can :magage, :all
+        can :read, :all
+        can :manage, :all
       else
         can :read, :all
-        can :manage, User, :id => user.id
+        can :update, User, :id => user.id
         if user.mod?
-          can :manage, Topic { |t| !t.author.admin? && (t.author == user || !t.author.mod?) }
-          can :manage, Post { |p| !p.author.admin? && (p.author == user || !p.author.mod?) }
+          can(:manage, Topic) { |t| !t.by_admin? && (t.author == user || !t.by_mod?) }
+          can(:manage, Post) { |p| !p.by_admin? && (p.author == user || !p.by_mod?) }
         else
           can :create, Topic
           can :create, Post

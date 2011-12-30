@@ -10,16 +10,18 @@
   <tr>
     <td class="post_col1">
       <div class="post_author">
-    	<% unless post.author.nil? %>
-    	  <%= link_to((post.aithor.real_name.nil? ? post.author.login : post.author.real_name), post.author) %>
-    	<% else %>
+        <% unless post.author.nil? %>
+    	  <%= link_to((post.author.real_name.nil? ? post.author.login : post.author.real_name), post.author) %><br />
+    	  Registered: <%= post.author.created_at.to_formatted_s(:short) %><br />
+    	  Posts: <%= post.author.posts.count %>
+        <% else %>
     	  guest
-    	<% end %>
+        <% end %>
       </div>
     </td>
     <td class="post_col2">
     	<div class="post_date">
-    	  <small>Created at: <%= post.created_at %>, Updated at: <%= post.updated_at %></small>
+    	  <small>Created: <%= post.created_at.to_formatted_s(:long) %>; Updated: <%= post.updated_at.to_formatted_s(:long) %></small>
     	</div>
     	<div class="post_body">
     	  <p><%= post.body %></p>
@@ -28,7 +30,7 @@
     	  <% if can? :update, post %>
             [ <%= link_to 'Edit', edit_forum_topic_post_path(@forum, @topic, post) %> ]
           <% end %>
-          <% if can? :destroy, post %>
+          <% if can?(:destroy, post) && post != @posts.first %>
             [ <%= link_to 'Destroy', [@forum, @topic, post], confirm: 'Are you sure?', method: :delete %> ]
     	  <% end %>
     	</div>

@@ -13,7 +13,7 @@
       	<strong><%= link_to forum.name, forum %></strong>
       </div>
       <div class="forum_stat">
-      	<small>Topics: <%= forum.topics.count %>, Posts: <%= forum.posts.count %></small>
+      	<small>Topics: <%= forum.topics.count %>; Posts: <%= forum.posts.count %></small>
       </div>
       <div class="forum_desc"><p><%= forum.description %></p></div>
       <div class="ops">
@@ -28,7 +28,7 @@
     <td class="forum_col2">
       <div class="last_post">
       	<% unless forum.posts.empty? %>
-      	  <%= link_to forum.posts.last.created_at.to_s, [forum, forum.posts.last.topic, forum.posts.last] %>
+      	  <%= link_to forum.posts.last.created_at.to_formatted_s(:long), [forum, forum.posts.last.topic, forum.posts.last] %>
       	  by
       	  <% unless forum.posts.last.author.nil? %>
       	    <%= link_to forum.posts.last.author.login, forum.posts.last.author %>

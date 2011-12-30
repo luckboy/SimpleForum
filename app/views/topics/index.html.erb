@@ -13,7 +13,7 @@
       <div class="topic_subject">
       	<%= link_to topic.subject, [@forum, topic] %> by 
       	<% unless topic.author.nil? %>
-      	  <%= topic.author.login %>
+      	  <%= link_to topic.author.login, topic.author %>
       	<% else %>
       	  guest
       	<% end %>
@@ -35,7 +35,7 @@
     <td class="topic_col3">
       <div class="last_post">
       	<% unless topic.posts.empty? %>
-      	  <%= link_to topic.posts.last.created_at.to_s, [topic.forum, topic.posts.last.topic, topic.posts.last] %>
+      	  <%= link_to topic.posts.last.created_at.to_formatted_s(:long), [topic.forum, topic.posts.last.topic, topic.posts.last] %>
       	  by
       	  <% unless topic.posts.last.author.nil? %>
       	    <%= link_to topic.posts.last.author.login, topic.posts.last.author %>
