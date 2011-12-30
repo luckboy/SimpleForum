@@ -5,11 +5,15 @@ SimpleForum::Application.routes.draw do
     end
   end
 
+  #resources :topics, :only => [:index] do
+  #  get 'search', :on => :collection
+  #end
+
   resources :users
 
-  resource :user_session
+  resource :user_session, :only => [:new, :create, :destroy]
   
-  resource :account, :controller => :users
+  resource :account, :controller => :users, :only => [:new, :create, :show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

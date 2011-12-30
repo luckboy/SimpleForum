@@ -1,5 +1,7 @@
 <h1>Users</h1>
 
+<%= will_paginate @users %>
+
 <table id="user_table" class="main_table">
   <tr>
   	<th class="user_col1">Login</th>
@@ -33,6 +35,8 @@
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate @users %>
 
 <br />
 

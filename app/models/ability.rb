@@ -28,6 +28,7 @@ class Ability
       if user.admin?
         can :read, :all
         can :manage, :all
+        can :search, Topic
       else
         can :read, :all
         can :update, User, :id => user.id
@@ -39,10 +40,12 @@ class Ability
           can :create, Post
           can :update, Post, :author_id => user.id
         end
+        can :search, Topic
       end
     else
       can :read, :all
       can :create, User
+      can :search, Topic
     end
   end
 end

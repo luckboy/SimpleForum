@@ -6,6 +6,7 @@ class TopicsController < ApplicationController
   def index
     @forum = Forum.find(params[:forum_id])
     @topics = @forum.topics
+    @topics = @topics.paginate :page => params[:page], :per_page => 5
 
     respond_to do |format|
       format.html # index.html.erb
@@ -91,5 +92,5 @@ class TopicsController < ApplicationController
       format.html { redirect_to forum_topics_url(@forum) }
       format.json { head :ok }
     end
-  end
+  end  
 end

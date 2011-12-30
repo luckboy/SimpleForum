@@ -1,5 +1,7 @@
 <h1><%= @topic.subject %></h1>
-	
+
+<%= will_paginate @posts %>
+
 <table id="post_table" class="main_table">
   <tr>
     <th class="post_col1">Author</th>
@@ -9,6 +11,7 @@
 <% @posts.each do |post| %>
   <tr>
     <td class="post_col1">
+      <a href=""
       <div class="post_author">
         <% unless post.author.nil? %>
     	  <%= link_to((post.author.real_name.nil? ? post.author.login : post.author.real_name), post.author) %><br />
@@ -38,6 +41,8 @@
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate @posts %>
 
 <br />
 
