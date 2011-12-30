@@ -9,9 +9,9 @@
 <% @posts.each do |post| %>
   <tr>
     <td class="post_col1">
-      <div clas="post_author">
+      <div class="post_author">
     	<% unless post.author.nil? %>
-    	  <%= post.author.login %>
+    	  <%= link_to((post.aithor.real_name.nil? ? post.author.login : post.author.real_name), post.author) %>
     	<% else %>
     	  guest
     	<% end %>
@@ -25,8 +25,12 @@
     	  <p><%= post.body %></p>
     	</div>
     	<div class="ops">
-          [ <%= link_to 'Edit', edit_forum_topic_post_path(@forum, @topic, post) %> |
-            <%= link_to 'Destroy', [@forum, @topic, post], confirm: 'Are you sure?', method: :delete %> ]
+    	  <% if can? :update, post %>
+            [ <%= link_to 'Edit', edit_forum_topic_post_path(@forum, @topic, post) %> ]
+          <% end %>
+          <% if can? :destroy, post %>
+            [ <%= link_to 'Destroy', [@forum, @topic, post], confirm: 'Are you sure?', method: :delete %> ]
+    	  <% end %>
     	</div>
     </td>
   </tr>
@@ -35,4 +39,7 @@
 
 <br />
 
-<%= link_to 'New Post', new_forum_topic_post_path(@forum, @topic) %>
+<% if can? :create, Post %>
+  <%= link_to 'New Post', new_forum_topic_post_path(@forum, @topic) %> |
+<% end %>
+<%= link_to 'Back', forum_topics_path(@forum) %>

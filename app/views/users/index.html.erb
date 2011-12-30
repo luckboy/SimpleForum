@@ -12,8 +12,12 @@
   	<td class="user_col1">
   	  <div class="user_login"><%= link_to user.login, user %></div>
   	  <div class="ops">
-        [ <%= link_to 'Edit', edit_user_path(user) %> |
-          <%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %> ]
+		<% if can? :update, user %>
+          [ <%= link_to 'Edit', edit_user_path(user) %> ]
+        <% end %>
+        <% if can? :destroy, user %>
+          [ <%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %> ]
+        <% end %>
   	  </div>
   	</td>
   	<td class="user_col2">
@@ -29,3 +33,7 @@
   </tr>
 <% end %>
 </table>
+
+<br />
+
+<%= link_to "Index", "/" %>

@@ -19,8 +19,12 @@
       	<% end %>
       </div>
       <div class="ops">
-        [ <%= link_to 'Edit', edit_forum_topic_path(@forum, topic) %> |
-          <%= link_to 'Destroy', [@forum, topic], confirm: 'Are you sure?', method: :delete %> ]
+      	<% if can? :update, topic %>
+          [ <%= link_to 'Edit', edit_forum_topic_path(@forum, topic) %> ]
+        <% end %>
+      	<% if can? :destroy, topic %>        
+          [ <%= link_to 'Destroy', [@forum, topic], confirm: 'Are you sure?', method: :delete %> ]
+        <% end %>
       </div>
     </td>
     <td class="topic_col2">
@@ -30,6 +34,15 @@
     </td>
     <td class="topic_col3">
       <div class="last_post">
+      	<% unless topic.posts.empty? %>
+      	  <%= link_to topic.posts.last.created_at.to_s, [topic.forum, topic.posts.last.topic, topic.posts.last] %>
+      	  by
+      	  <% unless topic.posts.last.author.nil? %>
+      	    <%= link_to topic.posts.last.author.login, topic.posts.last.author %>
+      	  <% else %>
+      	    guest
+      	  <% end %>
+      	<% end %>
       </div>
     </td>
   </tr>
@@ -38,4 +51,7 @@
 
 <br />
 
-<%= link_to 'New Topic', new_forum_topic_path(@forum) %>
+<% if can? :create, Topic %>
+  <%= link_to 'New Topic', new_forum_topic_path(@forum) %> |
+<% end %>
+<%= link_to 'Back', "/" %>

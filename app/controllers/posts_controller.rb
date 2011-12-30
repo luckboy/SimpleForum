@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /forums/1/topics/1/posts
   # GET /forums/1/topics/1/posts.json
   def index

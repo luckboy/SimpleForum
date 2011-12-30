@@ -17,12 +17,25 @@
       </div>
       <div class="forum_desc"><p><%= forum.description %></p></div>
       <div class="ops">
-       [ <%= link_to 'Edit', edit_forum_path(forum) %> |
-         <%= link_to 'Destroy', forum, confirm: 'Are you sure?', method: :delete %> ]
+      	<% if can? :update, forum %>
+          [ <%= link_to 'Edit', edit_forum_path(forum) %> ]
+        <% end %>
+      	<% if can? :destroy, forum %>
+          [ <%= link_to 'Destroy', forum, confirm: 'Are you sure?', method: :delete %> ]
+        <% end %>
       </div>      	
     </td>
     <td class="forum_col2">
       <div class="last_post">
+      	<% unless forum.posts.empty? %>
+      	  <%= link_to forum.posts.last.created_at.to_s, [forum, forum.posts.last.topic, forum.posts.last] %>
+      	  by
+      	  <% unless forum.posts.last.author.nil? %>
+      	    <%= link_to forum.posts.last.author.login, forum.posts.last.author %>
+      	  <% else %>
+      	    guest
+      	  <% end %>
+      	<% end %>
       </div>
     </td>
   </tr>
@@ -31,4 +44,6 @@
 
 <br />
 
-<%= link_to 'New Forum', new_forum_path %>
+<% if can? :create, Forum %>
+  <%= link_to 'New Forum', new_forum_path %>
+<% end %>

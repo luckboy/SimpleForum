@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /users
   # GET /users.json
   def index
@@ -34,7 +36,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = current_user
+    @user = params[:id].nil? ? current_user : User.find(params[:id])
   end
 
   # POST /users
@@ -56,7 +58,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    @user = params[:id].nil? ? current_user : User.find(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])

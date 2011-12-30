@@ -58,6 +58,7 @@ body {
       background-color: #e1fbb3;
       color: #0c2c01;
       text-align: left;
+      vertical-align: top;
       border: {
         color: #ccffc5;
         style: solid;
@@ -68,6 +69,7 @@ body {
   }
   tr {
     td {
+      vertical-align: top;
       border: {
         color: #ccffc5;
         style: solid;
@@ -79,11 +81,11 @@ body {
 }
 
 #forum_table {
-  .forum_col1 { width: 80%; }
+  .forum_col1 { width: 75%; }
 }
 
 #topic_table {
-  .topic_col1 { width: 70%; }
+  .topic_col1 { width: 65%; }
   .topic_col2 { width: 10%; }
 }
 
