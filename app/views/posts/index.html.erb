@@ -11,7 +11,6 @@
 <% @posts.each do |post| %>
   <tr>
     <td class="post_col1">
-      <a href=""
       <div class="post_author">
         <% unless post.author.nil? %>
     	  <%= link_to((post.author.real_name.nil? ? post.author.login : post.author.real_name), post.author) %><br />
@@ -27,7 +26,7 @@
     	  <small>Created: <%= post.created_at.to_formatted_s(:long) %>; Updated: <%= post.updated_at.to_formatted_s(:long) %></small>
     	</div>
     	<div class="post_body">
-    	  <p><%= post.body %></p>
+    	  <%= simple_format(h(post.body)) %>
     	</div>
     	<div class="ops">
     	  <% if can? :update, post %>

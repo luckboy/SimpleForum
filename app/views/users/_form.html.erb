@@ -46,6 +46,18 @@
   	<%= f.text_field :location %>
   </div>
 
+  <% if current_user.admin? %>
+    <div class="field">
+  	  <%= f.check_box :is_admin %>
+  	  <%= f.label :is_admin %>
+    </div>
+
+    <div class="field">
+  	  <%= f.check_box :is_mod %>
+  	  <%= f.label :is_mod %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit submit_text %>
   </div>

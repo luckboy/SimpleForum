@@ -146,3 +146,30 @@ div {
     margin-bottom: 10pt;
   } 
 }
+
+#notice {
+  color: green;
+}
+
+#alert {
+  color: #c00000;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: inline-table;
+}
+
+#error_explanation {
+  padding: {
+    bottom: 15pt;
+  } 
+  h2 {
+    color: #c00000;
+  }
+  ul li {
+    color: #c00000;
+    list-style: square;
+  } 
+}

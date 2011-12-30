@@ -1,6 +1,19 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
-  
+
+  private
+  def safe_params
+    if current_user && current_user.admin?
+      params
+    else
+      tmp_params = params.dup
+      tmp_params[:user] = tmp_params[:user].dup
+      tmp_params[:user].delete_if { |k, v| ["is_admin", "is_mod"].include? k }
+      tmp_params
+    end
+  end
+
+  public
   # GET /users
   # GET /users.json
   def index
@@ -43,7 +56,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
+    @user = User.new(safe_params[:user])
 
     respond_to do |format|
       if @user.save
@@ -62,7 +75,7 @@ class UsersController < ApplicationController
     @user = params[:id].nil? ? current_user : User.find(params[:id])
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(safe_params[:user])
         format.html { redirect_to "/", notice: "Account updated!" }
         format.json { head :ok }
       else

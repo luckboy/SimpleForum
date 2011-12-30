@@ -25,6 +25,16 @@
   <%= @user.location %>
 </p>
 
+<p>
+  <strong>Is admin:</strong>
+  <%= @user.admin? %>
+</p>
+
+<p>
+  <strong>Is mod:</strong>
+  <%= @user.mod? %>
+</p>
+
 <% if can? :update, @user %>
   <%= link_to 'Edit', edit_user_path(@user) %> |
 <% end %>

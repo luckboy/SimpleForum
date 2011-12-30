@@ -15,7 +15,7 @@
       <div class="forum_stat">
       	<small>Topics: <%= forum.topics.count %>; Posts: <%= forum.posts.count %></small>
       </div>
-      <div class="forum_desc"><p><%= forum.description %></p></div>
+      <div class="forum_desc"><%= simple_format(h(forum.description)) %></div>
       <div class="ops">
       	<% if can? :update, forum %>
           [ <%= link_to 'Edit', edit_forum_path(forum) %> ]
