@@ -33,3 +33,5 @@ group :test do
 end
 
 gem 'will_paginate'
+gem 'polyamorous'
+gem 'meta_search'

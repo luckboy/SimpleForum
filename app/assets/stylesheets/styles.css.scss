@@ -81,12 +81,13 @@ body {
 }
 
 #forum_table {
-  .forum_col1 { width: 75%; }
+  .forum_col2 { width: 25%; }
 }
 
 #topic_table {
-  .topic_col1 { width: 65%; }
-  .topic_col2 { width: 10%; }
+  .topic_col2 { width: 15%; }
+  .topic_col3 { width: 10%; }
+  .topic_col4 { width: 25%; }
 }
 
 #post_table {

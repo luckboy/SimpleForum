@@ -1,11 +1,19 @@
 class TopicsController < ApplicationController
   load_and_authorize_resource
-  
+
+  # GET /topics
+  # GET /topics.json  
   # GET /forums/1/topics
   # GET /forums/1/topics.json
   def index
-    @forum = Forum.find(params[:forum_id])
-    @topics = @forum.topics
+    unless params[:forum_id].nil?
+      @is_search = false
+      @forum = Forum.find(params[:forum_id])
+      @topics = @forum.topics
+    else
+      @is_search = true
+      @topics = Topic.search(params[:search])
+    end
     @topics = @topics.paginate :page => params[:page], :per_page => 5
 
     respond_to do |format|
@@ -93,4 +101,9 @@ class TopicsController < ApplicationController
       format.json { head :ok }
     end
   end  
+  
+  # GET /topics/1
+  def search
+    @search = Topic.search
+  end
 end

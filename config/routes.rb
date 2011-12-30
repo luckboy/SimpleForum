@@ -5,9 +5,9 @@ SimpleForum::Application.routes.draw do
     end
   end
 
-  #resources :topics, :only => [:index] do
-  #  get 'search', :on => :collection
-  #end
+  resources :topics, :only => [:index] do
+    get 'search', :on => :collection
+  end
 
   resources :users
 

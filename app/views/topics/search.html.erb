@@ -1,0 +1,19 @@
+<h1>Search</h1>
+
+<%= form_for(@search, :url => topics_path, :html => { :method => :get }) do |f| %>
+  <div class="field">
+  	<%= f.label :subject_or_posts_body_contains, "Keyword" %><br />
+  	<%= f.text_field :subject_or_posts_body_contains %>
+  </div>
+  <div class="field">
+  	<%= f.label :posts_author_login_equals, "Author" %><br />
+  	<%= f.text_field :posts_author_login_equals %>
+  </div>
+  <div class="field">
+  	<%= f.label :forum_name_equals, "Forum" %><br />
+  	<%= f.collection_select :forum_name_equals, Forum.all, :name,  :name, :prompt => true %>
+  </div>
+  <div class="actions">
+  	<%= f.submit "Search" %>
+  </div>
+<% end %>
