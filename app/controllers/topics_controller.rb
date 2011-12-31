@@ -1,5 +1,3 @@
-require 'will_paginate/array'
-
 class TopicsController < ApplicationController
   load_and_authorize_resource
 
@@ -14,7 +12,7 @@ class TopicsController < ApplicationController
       @topics = @forum.topics
     else
       @is_search = true
-      @topics = Topic.search(params[:search]).to_a.uniq # to nie jest wydajne
+      @topics = Topic.search(params[:search]).select('DISTINCT topics.*').order(:created_last_post_at).reverse_order
     end
     @topics = @topics.paginate :page => params[:page], :per_page => topics_per_page
 
