@@ -46,7 +46,7 @@
   	<%= f.text_field :location %>
   </div>
 
-  <% if current_user.admin? %>
+  <% if current_user && current_user.admin? %>
     <div class="field">
   	  <%= f.check_box :is_admin %>
   	  <%= f.label :is_admin %>
