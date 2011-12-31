@@ -35,3 +35,4 @@ end
 gem 'will_paginate'
 gem 'polyamorous'
 gem 'meta_search'
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'

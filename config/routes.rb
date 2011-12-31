@@ -1,4 +1,6 @@
 SimpleForum::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   resources :forums do
     resources :topics do
       resources :posts

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   
   rescue_from CanCan::AccessDenied do |e|
-    redirect_to root_url, :alert => e.message
+    redirect_to main_app.root_url, :alert => e.message
   end
   
   private

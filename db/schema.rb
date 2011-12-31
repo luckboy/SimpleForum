@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111229222126) do
+ActiveRecord::Schema.define(:version => 20111231004132) do
 
   create_table "forums", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,19 @@ ActiveRecord::Schema.define(:version => 20111229222126) do
 
   add_index "posts", ["author_id"], :name => "index_posts_on_author_id"
   add_index "posts", ["topic_id"], :name => "index_posts_on_topic_id"
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 5
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "topics", :force => true do |t|
     t.string   "subject"
