@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111231004132) do
+ActiveRecord::Schema.define(:version => 20111231131307) do
 
   create_table "forums", :force => true do |t|
     t.string   "name"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(:version => 20111231004132) do
     t.integer  "forum_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "created_last_post_at"
+    t.integer  "views",                :default => 0
   end
 
   add_index "topics", ["author_id"], :name => "index_topics_on_author_id"
@@ -77,6 +79,9 @@ ActiveRecord::Schema.define(:version => 20111231004132) do
     t.string   "location"
     t.boolean  "is_admin",            :default => false
     t.boolean  "is_mod",              :default => false
+    t.integer  "posts_per_page",      :default => 15
+    t.integer  "topics_per_page",     :default => 30
+    t.integer  "users_per_page",      :default => 30
   end
 
 end

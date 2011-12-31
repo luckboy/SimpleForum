@@ -13,7 +13,8 @@
       <th class="topic_col2">Forum</th>
     <% end%>
     <th class="topic_col3">Posts</th>
-    <th class="topic_col4">Last post</th>
+    <th class="topic_col4">Views</th>
+    <th class="topic_col5">Last post</th>
   </tr>
 
 <% @topics.each do |topic| %>
@@ -49,6 +50,11 @@
       </div>
     </td>
     <td class="topic_col4">
+      <div class="topic_posts">
+      	<%= topic.views %>
+	  </div>
+    </td>
+    <td class="topic_col5">
       <div class="last_post">
       	<% unless topic.posts.empty? %>
       	  <%= link_to topic.posts.last.created_at.to_formatted_s(:long), [topic.forum, topic.posts.last.topic, topic.posts.last] %>

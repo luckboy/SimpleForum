@@ -6,8 +6,9 @@ class PostsController < ApplicationController
   def index
     @forum = Forum.find(params[:forum_id])
     @topic = @forum.topics.find(params[:topic_id])
+    @topic.update_attribute(:views, @topic.views + 1)
     @posts = @topic.posts
-    @posts = @posts.paginate :page => params[:page], :per_page => 5
+    @posts = @posts.paginate :page => params[:page], :per_page => posts_per_page
 
     respond_to do |format|
       format.html # index.html.erb

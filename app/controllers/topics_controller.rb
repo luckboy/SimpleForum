@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class TopicsController < ApplicationController
   load_and_authorize_resource
 
@@ -12,9 +14,9 @@ class TopicsController < ApplicationController
       @topics = @forum.topics
     else
       @is_search = true
-      @topics = Topic.search(params[:search])
+      @topics = Topic.search(params[:search]).to_a.uniq # to nie jest wydajne
     end
-    @topics = @topics.paginate :page => params[:page], :per_page => 5
+    @topics = @topics.paginate :page => params[:page], :per_page => topics_per_page
 
     respond_to do |format|
       format.html # index.html.erb

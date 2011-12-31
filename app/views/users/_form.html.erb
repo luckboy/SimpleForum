@@ -57,6 +57,21 @@
   	  <%= f.label :is_mod %>
     </div>
   <% end %>
+  
+  <div class="field">
+  	<%= f.label :posts_per_page %>
+  	<%= f.select :posts_per_page, (1..100).map { |i| [i, i] } %>
+  </div>
+
+  <div class="field">
+  	<%= f.label :topics_per_page %>
+  	<%= f.select :topics_per_page, (1..100).map { |i| [i, i] } %>
+  </div>
+
+  <div class="field">
+  	<%= f.label :users_per_page %>
+  	<%= f.select :users_per_page, (1..100).map { |i| [i, i] } %>
+  </div>
 
   <div class="actions">
     <%= f.submit submit_text %>
